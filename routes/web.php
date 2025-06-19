@@ -16,6 +16,7 @@ Route::post('/register', [UserController::class, 'register'])->name('register_su
 
 Route::middleware([CheckIsLogged::class])->group(function () {
     Route::get('/', [MainController::class, 'index'])->name('home_page');
+    Route::delete('/user/{id}', [UserController::class, 'destroy'])->name('users.destroy');
 });
 
 Route::get('/db-test', function () {

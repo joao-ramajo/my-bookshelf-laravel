@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Services\Operations;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\ValidationException;
@@ -43,5 +44,21 @@ class UserController extends Controller
         $user->save();
 
         return redirect()->route('home_page');
+    }
+
+    public function destroy($id)
+    {
+        $id = Operations::decrypyId($id);
+        if ($id === null) {
+            return redirect()->route('home_page');
+        }
+
+        $user = User::find($id);
+
+        // Using soft delete for users
+        $user->deleted_at = date('Y:m:d H:i:s');
+        $user->save();
+
+        return redirect()->route('logout');
     }
 }

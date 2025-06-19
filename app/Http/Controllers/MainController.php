@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 class MainController extends Controller
 {
     public function index(){
-        echo "Home page";
+        return view('home');
     }
 
     public function login_page(){
