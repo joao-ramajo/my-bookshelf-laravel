@@ -74,5 +74,5 @@
         </div>
     </div>
 
-
+    <script src="{{ asset('js/show_password.js') }}"></script>
 @endsection

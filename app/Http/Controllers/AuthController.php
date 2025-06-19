@@ -7,6 +7,13 @@ use Illuminate\Http\Request;
 
 class AuthController extends Controller
 {
+
+    public function logout(){
+        session()->forget('user');
+        return redirect()
+            ->to('login_page');
+    }
+
     public function login(Request $request)
     {
         $request->validate(
@@ -41,9 +48,29 @@ class AuthController extends Controller
             return redirect()
                 ->back()
                 ->withInput()
-                ->with('loginError', 'Usuário ou senha incorretos');
+                ->with('loginError', 'Usuário não encontrado');
         }
 
-        die('usuario encontrado e os caçamba');
+        if(!password_verify($password, $user->password)){
+            return redirect()
+                ->back()
+                ->withInput()
+                ->with('loginError', 'Senha ou email incorretos');
+        }
+
+        $user->last_login =date('Y-m-d H:i:s');
+        $user->save();
+
+        session([
+            'user' => [
+                'id' => $user->id,
+                'username' => $user->username
+            ]
+            ]);
+
+        
+        return redirect()  
+            ->route('home_page');
+
     }
 }
