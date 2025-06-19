@@ -9,4 +9,8 @@ class MainController extends Controller
     public function login_page(){
         return view('login');
     }
+
+    public function register_page(){
+        echo "Página de reigstro";
+    }
 }

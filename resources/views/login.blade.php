@@ -16,7 +16,12 @@
                         name="email"
                         placeholder="Digite seu email"
                         
-                        value="john">
+                         @if(old('email')) 
+                                value="{{ old('email') }}"
+                            @else 
+                                value="admin@gmail.com"
+                            @endif
+                        >
                 </div>
 
                 @error('email')
@@ -35,7 +40,12 @@
                             name="password"
                             placeholder="Digite sua senha"
                             
-                            value="123">
+                            @if(old('password')) 
+                                value="{{ old('password') }}"
+                            @else 
+                                value="123456"
+                            @endif
+                            >
                     </div>
                     {{-- Mostrar erros --}}
                     @error('password')
@@ -49,9 +59,16 @@
                     </div>
                 </div>
 
+                {{-- Invalid login  --}}
+                @if(session('loginError'))
+                    <div class="alert alert-warning my-3 text-center">
+                        {{ session('loginError') }}
+                    </div>
+                @endif
+
                 <div class="d-grid gap-2">
                     <input type="submit" class="btn btn-danger" value="Entrar">
-                    <a href="cadastro" class="btn btn-outline-secondary">Faça seu cadastro</a>
+                    <a href="{{ route('register_page') }}" class="btn btn-outline-secondary">Faça seu cadastro</a>
                 </div>
             </form>
         </div>
