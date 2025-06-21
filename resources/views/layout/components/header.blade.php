@@ -13,26 +13,27 @@
                              Bem-vindo, <strong class="">{{ session('user.username') }}</strong>
                          </button>
                          <ul class="dropdown-menu">
-                             <li><a class="dropdown-item text-secondary" href="{$baseUrl}usuarios/editar-conta/$id/$token"><i class="bi bi-pencil-square"></i> Editar perfil</a></li>
-                             <li><a class="dropdown-item text-danger" href="{{ route('users.destroy', ['id' => Crypt::encrypt(session('user.id'))]) }}" onclick="return confirm('Tem certeza que deseja excluir este esta conta ? <br>Aviso: Está ação não tem volta')"><i class="bi bi-trash"></i> Deletar conta</a></li>
+                             {{-- <li><a class="dropdown-item text-secondary" href="{$baseUrl}usuarios/editar-conta/$id/$token"><i class="bi bi-pencil-square"></i> Editar perfil</a></li> --}}
+                             {{-- <li><a class="dropdown-item text-danger" href="{{ route('users.destroy', ['id' => Crypt::encrypt(session('user.id'))]) }}" onclick="return confirm('Tem certeza que deseja excluir este esta conta ? <br>Aviso: Está ação não tem volta')"><i class="bi bi-trash"></i> Deletar conta</a></li> --}}
 
                              <form action="{{ route('users.destroy', Crypt::encrypt(session('user.id'))) }}" method="POST" onsubmit="return confirm('Tem certeza que deseja apagar sua conta ?')">
                                 @csrf
                                 @method('DELETE') <!-- Aqui está o truque -->
-                                <button type="submit" class="dropdown-item text-danger">Deletar</button>
+                                <button type="submit" class="dropdown-item text-secondary"><i class="bi bi-trash3"></i> Deletar conta </button>
                             </form>
                          </ul>
                      </div>
 
                  </li>
-                 <li class="nav-item me-2">
+                 {{-- <li class="nav-item me-2">
                      <a class=" my-2 btn btn-outline-danger" href="{$baseUrl}livros?page=1"><i class="bi-plus-book"></i> Ver livros</a>
-                 </li>
+                 </li> --}}
                  <li class="nav-item me-2">
                      <a class=" my-2 btn btn-outline-danger" href="{{ route('books.page') }}"><i class="bi-plus-circle"></i> Cadastrar Livro</a>
                  </li>
                  <li class="nav-item">
-                     <a class=" my-2 btn btn-outline-danger" href="{{ route('logout') }}"><i class="bi-box-arrow-right"></i> Sair</a>
+                     <a class=" my-2 btn btn-outline-danger" href="{{ route('logout') }}"><i class="bi-box-arrow-right"></i> Sair </a>
+                     
                  </li>
 
              </ul>
