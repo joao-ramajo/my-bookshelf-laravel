@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\BookController;
 use App\Http\Controllers\MainController;
 use App\Http\Controllers\UserController;
 use App\Http\Middleware\CheckIsLogged;
@@ -16,6 +17,12 @@ Route::post('/register', [UserController::class, 'register'])->name('register_su
 
 Route::middleware([CheckIsLogged::class])->group(function () {
     Route::get('/', [MainController::class, 'index'])->name('home_page');
+    
+    Route::prefix('book')->group(function (){
+        Route::get('/', [MainController::class, 'new_book_page']);
+        Route::post('/new', [BookController::class, 'new'])->name('books.new');
+    });
+
     Route::delete('/user/{id}', [UserController::class, 'destroy'])->name('users.destroy');
 });
 

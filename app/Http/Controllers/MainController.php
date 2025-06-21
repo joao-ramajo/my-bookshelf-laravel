@@ -17,4 +17,8 @@ class MainController extends Controller
     public function register_page(){
         return view('register');
     }
+
+    public function new_book_page(){
+        return view('book.register');
+    }
 }
