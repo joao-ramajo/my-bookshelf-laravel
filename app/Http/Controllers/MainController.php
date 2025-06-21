@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Book;
 use App\Models\User;
+use App\Services\Operations;
 use Illuminate\Http\Request;
 
 class MainController extends Controller
@@ -33,5 +34,18 @@ class MainController extends Controller
 
     public function new_book_page(){
         return view('book.register');
+    }
+
+    public function book($id){
+        $id = Operations::decrypyId($id);
+        if($id === NULL){
+            return redirect()->route('home_page');
+        }
+
+        $book = Book::find($id);
+
+     
+        // die();
+        return view('book/view', ['book' => $book]);
     }
 }
