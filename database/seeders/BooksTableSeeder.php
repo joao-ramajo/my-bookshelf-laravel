@@ -21,6 +21,7 @@ class BooksTableSeeder extends Seeder
                 'book_image'  => 'https://via.placeholder.com/300x400?text=Laravel+Book',
                 'gender'      => 'Programming',
                 'publisher'   => 'CodePress',
+                'nacional'    => 'S',
                 'description' => 'An in-depth guide to mastering Laravel.',
             ],
             [
@@ -30,6 +31,7 @@ class BooksTableSeeder extends Seeder
                 'book_image'  => 'https://via.placeholder.com/300x400?text=PHP+Book',
                 'gender'      => 'Technology',
                 'publisher'   => 'TechReads',
+                'nacional'    => 'S',
                 'description' => 'A practical book to learn PHP from scratch.',
             ],
             [
@@ -39,6 +41,7 @@ class BooksTableSeeder extends Seeder
                 'book_image'  => 'https://via.placeholder.com/300x400?text=JS+Book',
                 'gender'      => 'Web Development',
                 'publisher'   => 'JSWorld',
+                'nacional'    => 'S',
                 'description' => 'Uncover the secrets of modern JavaScript.',
             ],
             [
@@ -48,6 +51,7 @@ class BooksTableSeeder extends Seeder
                 'book_image'  => 'https://via.placeholder.com/300x400?text=MySQL+Book',
                 'gender'      => 'Databases',
                 'publisher'   => 'DBPress',
+                'nacional'    => 'S',
                 'description' => 'Learn how to manage data with MySQL.',
             ],
             [
@@ -57,6 +61,7 @@ class BooksTableSeeder extends Seeder
                 'book_image'  => 'https://via.placeholder.com/300x400?text=CSS+Book',
                 'gender'      => 'Design',
                 'publisher'   => 'StyleWorks',
+                'nacional'    => 'S',
                 'description' => 'Craft beautiful websites with CSS.',
             ],
             [
@@ -66,6 +71,7 @@ class BooksTableSeeder extends Seeder
                 'book_image'  => 'https://via.placeholder.com/300x400?text=HTML5+Book',
                 'gender'      => 'Web Development',
                 'publisher'   => 'MarkupBooks',
+                'nacional'    => 'S',
                 'description' => 'Everything you need to know about HTML5.',
             ],
             [
@@ -75,6 +81,7 @@ class BooksTableSeeder extends Seeder
                 'book_image'  => 'https://via.placeholder.com/300x400?text=Node.js+Book',
                 'gender'      => 'Backend',
                 'publisher'   => 'NodeBooks',
+                'nacional'    => 'S',
                 'description' => 'Build scalable backends with Node.js.',
             ],
             [
@@ -84,6 +91,7 @@ class BooksTableSeeder extends Seeder
                 'book_image'  => 'https://via.placeholder.com/300x400?text=React+Book',
                 'gender'      => 'Frontend',
                 'publisher'   => 'ReactWorld',
+                'nacional'    => 'S',
                 'description' => 'A beginner-friendly guide to React.',
             ],
             [
@@ -93,6 +101,7 @@ class BooksTableSeeder extends Seeder
                 'book_image'  => 'https://via.placeholder.com/300x400?text=Vue.js+Book',
                 'gender'      => 'Frontend',
                 'publisher'   => 'VuePress',
+                'nacional'    => 'S',
                 'description' => 'Get up and running with Vue.js fast.',
             ],
             [
@@ -102,6 +111,7 @@ class BooksTableSeeder extends Seeder
                 'book_image'  => 'https://via.placeholder.com/300x400?text=Laravel+API+Book',
                 'gender'      => 'Programming',
                 'publisher'   => 'LaravelPro',
+                'nacional'    => 'S',
                 'description' => 'Design powerful APIs with Laravel.',
             ],
             [
@@ -111,6 +121,7 @@ class BooksTableSeeder extends Seeder
                 'book_image'  => 'https://via.placeholder.com/300x400?text=Git+Book',
                 'gender'      => 'Versionamento',
                 'publisher'   => 'DevOpsBooks',
+                'nacional'    => 'S',
                 'description' => 'Aprenda a usar Git como um profissional.',
             ],
             [
@@ -120,6 +131,7 @@ class BooksTableSeeder extends Seeder
                 'book_image'  => 'https://via.placeholder.com/300x400?text=Docker+Book',
                 'gender'      => 'DevOps',
                 'publisher'   => 'CloudPress',
+                'nacional'    => 'S',
                 'description' => 'Use containers para facilitar seu desenvolvimento.',
             ],
             [
@@ -129,6 +141,7 @@ class BooksTableSeeder extends Seeder
                 'book_image'  => 'https://via.placeholder.com/300x400?text=Clean+Code+Book',
                 'gender'      => 'Boas práticas',
                 'publisher'   => 'CodeCraft',
+                'nacional'    => 'S',
                 'description' => 'Escreva código limpo e sustentável.',
             ],
         ]);

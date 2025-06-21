@@ -22,6 +22,7 @@ Route::middleware([CheckIsLogged::class])->group(function () {
         Route::get('/', [MainController::class, 'new_book_page'])->name('books.page');
         Route::post('/new', [BookController::class, 'new'])->name('books.new');
         Route::get('/{id}', [MainController::class, 'book'])->name('books.view');
+        Route::delete('/{id}', [BookController::class, 'destroy'])->name('books.destroy');
     });
 
     Route::delete('/user/{id}', [UserController::class, 'destroy'])->name('users.destroy');

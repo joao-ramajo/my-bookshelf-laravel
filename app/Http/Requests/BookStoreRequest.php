@@ -26,6 +26,7 @@ class BookStoreRequest extends FormRequest
             'title' => 'required|unique:books|max:255',
             'book_image' => 'required', // |image|mimes:jpeg,png,jpg|max:2048
             'authors' => 'required',
+            'nacional' => 'required',
             'pages_qtd' => 'required',
             'gender' => 'required',
             'publisher' => 'required',

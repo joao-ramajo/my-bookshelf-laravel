@@ -44,8 +44,8 @@ class MainController extends Controller
 
         $book = Book::find($id);
 
-     
-        // die();
         return view('book/view', ['book' => $book]);
     }
+
+
 }

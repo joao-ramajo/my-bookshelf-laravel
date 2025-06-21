@@ -17,28 +17,44 @@
                 </div>
                 <div class="col-md-8">
                     <div class="card-body">
-                        <h2 class="card-title text-primary">
+                        <h2 class="card-title text-danger">
                             {{ $book['title'] }}
                         </h2>
                         <p class="text-muted mb-1"><i class="bi bi-person-lines-fill"></i> <strong>Autor(es):</strong> {{ $book['authors'] }}</p>
                         <p class="text-muted mb-1"><i class="bi bi-journal"></i> <strong>Editora:</strong> {{ $book['publisher'] }}</p>
                         <p class="text-muted mb-1"><i class="bi bi-file-earmark-text"></i> <strong>Nº de Páginas:</strong> {{ $book['pages_qtd'] }}</p>
                         <p class="text-muted mb-1"><i class="bi bi-bookmark"></i> <strong>Gênero:</strong> {{ $book['gender'] }}</p>
-                        {{-- <p class="text-muted mb-1"><i class="bi bi-flag"></i> <strong>Nacional:</strong>$livro->nacional === 'S' ? 'Sim' : 'Não' ?> {{ $book }}</p> --}}
+                        <p class="text-muted mb-1"><i class="bi bi-flag"></i> <strong>Nacional:</strong> {{ $book['nacional'] === 'S' ? 'Sim' : 'Não' }}</p>
 
                         <hr>
 
                         <h5 class="text-dark"><i class="bi bi-card-text"></i> Descrição</h5>
                         <p class="card-text"> {{ $book['description'] }} </p>
-                        <div class="mt-4">
-                            <a href="" class="btn btn-outline-primary me-2"><i class="bi bi-pencil-square"></i> Editar</a>
-                            <a href="" class="btn btn-outline-danger"
-                                onclick="return confirm('Tem certeza que deseja excluir este livro?')"><i class="bi bi-trash"></i> Excluir</a>
-                        </div>
+
+                        @if($book['user_id'] === session('user.id'))
+                            <div class="mt-4 d-flex">
+                                {{-- <a href="{{ }}" class="btn btn-outline-primary me-2"><i class="bi bi-pencil-square"></i> Editar</a> --}}
+                                    <form action="{{ route('books.destroy', ['id' => Crypt::encrypt($book['id'])]) }}" method="POST">
+                                        @csrf
+                                        @method('DELETE') <!-- Aqui está o truque -->
+
+                                        <button type="submit" class="btn btn-outline-warning">
+                                            <i class='bi bi-trash'></i> Excluir
+                                        </button>
+
+                                    </form>
+                            </div>
+                        @else
+                            <div class="alert alert-light" style="font-size: .8rem">
+                                Você pode editar ou excluir os livros que você publicou.
+                            </div>
+                        @endif
+                        
                         <!-- Área de avaliação -->
+                         {{--
                         <hr>
                         <h4 class="mt-4">Deixe sua avaliação</h4>
-                        {{-- <form method="POST" action="" class="mt-3">
+                        <form method="POST" action="" class="mt-3">
                             {{-s- <input type="hidden" name="edit_token" value=""> s--}s}
                             <input type="hidden" name="id_usuario" value="">
                             <input type="hidden" name="id_livro" value="" />
