@@ -2,12 +2,23 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Book;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class MainController extends Controller
 {
     public function index(){
-        return view('home');
+
+        $id = session('user.id');
+
+        $books = User::find($id)
+            ->books()
+            ->whereNull('deleted_at')
+            ->get()
+            ->toArray();
+
+        return view('home', ['books' => $books]);
     }
 
     public function login_page(){

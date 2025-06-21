@@ -22,43 +22,30 @@ class BookStoreRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'user_id'     => 'required|integer|exists:users,id',
-            'title'       => 'required|string|unique:books,title|max:255',
-            'pages_qtd'   => 'required|integer|min:1',
-            'gender'      => 'required|string|max:100',
-            'publisher'   => 'required|string|max:150',
-            'description' => 'required|string|min:10',
+            'user_id' => 'required',
+            'title' => 'required|unique:books|max:255',
+            'book_image' => 'required', // |image|mimes:jpeg,png,jpg|max:2048
+            'authors' => 'required',
+            'pages_qtd' => 'required',
+            'gender' => 'required',
+            'publisher' => 'required',
+            'description' => 'required'
         ];
     }
-
 
     public function messages(): array
     {
         return [
-            'user_id.required'     => 'O usuário é obrigatório.',
-            'user_id.integer'      => 'O usuário deve ser um número inteiro.',
-            'user_id.exists'       => 'O usuário informado não existe.',
-
-            'title.required'       => 'O título é obrigatório.',
-            'title.string'         => 'O título deve ser um texto.',
-            'title.unique'         => 'Já existe um livro com este título.',
-            'title.max'            => 'O título não pode ultrapassar 255 caracteres.',
-
-            'pages_qtd.required'   => 'O número de páginas é obrigatório.',
-            'pages_qtd.integer'    => 'O número de páginas deve ser um número inteiro.',
-            'pages_qtd.min'        => 'O livro deve ter ao menos uma página.',
-
-            'gender.required'      => 'O gênero é obrigatório.',
-            'gender.string'        => 'O gênero deve ser um texto.',
-            'gender.max'           => 'O gênero não pode passar de 100 caracteres.',
-
-            'publisher.required'   => 'A editora é obrigatória.',
-            'publisher.string'     => 'A editora deve ser um texto.',
-            'publisher.max'        => 'O nome da editora é muito longo.',
-
-            'description.required' => 'A descrição é obrigatória.',
-            'description.string'   => 'A descrição deve ser um texto.',
-            'description.min'      => 'A descrição deve ter pelo menos 10 caracteres.',
+            'title.required' => 'O titúlo é obrigatório',
+            'title.unique' => 'Já existe um livro com este titúlo',
+            'pages_qtd.required' => 'Este campo é obrigatório',
+            'gender.required' => 'Este campo é obrigatório',
+            'publisher.required' => 'Este campo é obrigatório',
+            'description.required' => 'Este campo é obrigatório',
+            // 'book_image.required' => 'Você precisa enviar uma imagem.',
+            // 'book_image.image'    => 'O arquivo deve ser uma imagem.',
+            // 'book_image.mimes'    => 'Formatos permitidos: jpeg, jpg e png.',
+            // 'book_image.max'      => 'A imagem não pode passar de 2MB.',
         ];
     }
 }

@@ -13,7 +13,6 @@ class UserController extends Controller
 {
     public function register(Request $request)
     {
-        echo "Criando novo usuario";
 
         $request->validate(
             [

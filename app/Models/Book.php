@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Book extends Model
 {
     use SoftDeletes;
-    public function user(): BelongsTo
+    public function user()
     {
         return $this->belongsTo(User::class);
     }

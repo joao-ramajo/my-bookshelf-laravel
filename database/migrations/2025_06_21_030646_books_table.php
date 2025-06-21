@@ -16,12 +16,13 @@ return new class extends Migration
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->string('title', 255)->unique();
             $table->integer('pages_qtd');
-            $table->string('book_image');
+            $table->string('book_image')->nullable();
             $table->string('gender', 100);
             $table->string('publisher', 150);
             $table->text('description');
 
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

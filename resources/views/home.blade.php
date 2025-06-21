@@ -8,4 +8,6 @@
         </div>
     </section>
 
+    <section class="mt-3 bg-white mb-4"></section>
+    @include('book.card')
 @endsection

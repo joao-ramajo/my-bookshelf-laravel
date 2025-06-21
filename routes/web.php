@@ -19,7 +19,7 @@ Route::middleware([CheckIsLogged::class])->group(function () {
     Route::get('/', [MainController::class, 'index'])->name('home_page');
     
     Route::prefix('book')->group(function (){
-        Route::get('/', [MainController::class, 'new_book_page']);
+        Route::get('/', [MainController::class, 'new_book_page'])->name('books.page');
         Route::post('/new', [BookController::class, 'new'])->name('books.new');
     });
 
