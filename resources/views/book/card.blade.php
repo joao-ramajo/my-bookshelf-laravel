@@ -1,5 +1,5 @@
 
-        <div class="container d-flex flex-row flex-wrap gap-5">
+        <div class="container d-flex flex-row flex-wrap gap-5 justify-content-center">
             @foreach($books as $book)
                     <div class="card h-100 shadow-sm livro_card" style="width: 300px">
                         <img src="{{ $book['book_image'] }}" class="card-img-top" alt="Capa do livro {$titulo}" style="height: 250px; object-fit: cover;">
@@ -13,4 +13,7 @@
                         </div>
                     </div>
             @endforeach
+
         </div>
+
+        <div class="d-flex w-100 justify-content-center align-items-center my-3">{{ $books->links() }}</div>

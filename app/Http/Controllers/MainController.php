@@ -12,11 +12,13 @@ class MainController extends Controller
 
         $id = session('user.id');
 
-        $books = User::find($id)
-            ->books()
-            ->whereNull('deleted_at')
-            ->get()
-            ->toArray();
+        // $books = User::find($id)
+        //     ->books()
+        //     ->whereNull('deleted_at')
+        //     ->get()
+        //     ->toArray();    
+
+        $books = Book::orderBy('created_at', 'desc')->paginate(3);
 
         return view('home', ['books' => $books]);
     }
