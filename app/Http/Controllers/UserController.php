@@ -6,8 +6,7 @@ use App\Models\User;
 use App\Services\Operations;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Validation\ValidationException;
-use stdClass;
+
 
 class UserController extends Controller
 {
