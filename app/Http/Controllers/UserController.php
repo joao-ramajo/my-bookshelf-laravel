@@ -74,13 +74,20 @@ class UserController extends Controller
 
             $user->email = $data['email'];
             $user->username = $data['username'];
-            $user->password = $data['password'];
+            $user->password = Hash::make($data['password']);
             $user->save();
+
+            session([
+                'user' => [
+                    'id' => $user->id,
+                    'username' => $user->username,
+                    'email' => $user->email
+                ]
+            ]);
 
             return redirect()
                 ->route('home_page')
                 ->with('success', 'Informações atualizadas com sucesso');
-
         } catch (Exception $e) {
             LogService::error($e->getMessage());
             return redirect()
