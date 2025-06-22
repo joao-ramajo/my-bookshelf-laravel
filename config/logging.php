@@ -52,6 +52,12 @@ return [
 
     'channels' => [
 
+        'books' => [
+            'driver' => 'single',
+            'path' => storage_path('logs/books.log'),
+            'level' => 'debug',
+        ],
+
         'stack' => [
             'driver' => 'stack',
             'channels' => explode(',', env('LOG_STACK', 'single')),

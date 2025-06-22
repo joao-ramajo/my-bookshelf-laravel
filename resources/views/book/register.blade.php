@@ -2,7 +2,12 @@
 
 @section('content')
     <div class="w-50 mx-auto my-5">
-
+        {{-- Exceptions --}}
+        @if(session('exception_error'))
+            <div class="alert alert-warning">
+                {{ session('exception_error') }}
+            </div>
+        @endif
         <form action="{{ route('books.new') }}" method="POST" enctype="multipart/form-data" class="p-4 bg-white rounded shadow-sm">
             @csrf
 

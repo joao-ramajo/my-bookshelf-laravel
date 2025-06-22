@@ -4,39 +4,39 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\BookStoreRequest;
 use App\Models\Book;
+use App\Services\BookService;
+use App\Services\LogService;
 use App\Services\Operations;
+use Exception;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
 class BookController extends Controller
 {
     public function new(BookStoreRequest $request)
     {
-        $data = $request->validated();
+        try {
+            $status = BookService::create($request);
 
-        if($request->hasFile('book_image')){
-            $file = $request->file('book_image');
-            $path = $file->store('books', 'public');
-            $data['book_image'] = $path;
+            return redirect()
+                ->route('home_page')
+                ->with('success', 'Livro cadastrado com sucesso');
+        } catch (Exception $e) {
+
+            LogService::info("{$e->getMessage()}");
+
+            return redirect()
+                ->back()
+                ->with('exception_error', "Houve um erro ao cadastrar o livro, por favor entre em contato com o suporte")
+                ->withInput();
         }
-
-        $book = new Book();
-        $book->user_id     = $data['user_id'];
-        $book->title       = $data['title'];
-        $book->nacional    = $data['nacional'];
-        $book->pages_qtd   = $data['pages_qtd'];
-        $book->book_image  = $data['book_image'] ?? null;
-        $book->gender      = $data['gender'];
-        $book->publisher   = $data['publisher'];
-        $book->description = $data['description'];
-
-        $book->save();
-
-        return redirect()->route('home_page');
     }
 
-    public function destroy($id){
+    public function destroy($id): RedirectResponse
+    {
         $id = Operations::decrypyId($id);
-        if($id === null){
+        if ($id === null) {
             return redirect()->route('home_page');
         }
 

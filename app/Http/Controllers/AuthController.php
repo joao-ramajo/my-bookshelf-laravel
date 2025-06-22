@@ -3,18 +3,19 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 
 class AuthController extends Controller
 {
 
-    public function logout(){
+    public function logout():RedirectResponse {
         session()->forget('user');
         return redirect()
             ->route('login_page');
     }
 
-    public function login(Request $request)
+    public function login(Request $request):RedirectResponse
     {
         $request->validate(
             // Regras para os campos de email e senha
