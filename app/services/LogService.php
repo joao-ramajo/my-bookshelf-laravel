@@ -10,6 +10,10 @@ class LogService{
     public static function info(string $message){
         Log::channel(self::$channel)->info($message);
     }
+
+    public static function error(string $message){
+        Log::channel(self::$channel)->error($message);
+    }
 }
 
 ?>

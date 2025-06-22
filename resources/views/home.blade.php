@@ -10,11 +10,7 @@
 
     <section class="mt-3 bg-white mb-4">
         {{-- Sucess messages --}}
-        @if(session('success'))
-            <div class="alert alert-success w-50 mx-auto text-center">
-                {{ session('success') }}
-            </div>
-        @endif
+        @include('layout.components.messages')
         @include('book.card')
     </section>
 @endsection

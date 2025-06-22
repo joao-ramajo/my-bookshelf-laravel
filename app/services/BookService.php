@@ -8,7 +8,7 @@ use Exception;
 
 class BookService
 {
-    public static function create(BookStoreRequest $request):bool
+    public static function create(BookStoreRequest $request): bool
     {
         $data = $request->validated();
 
@@ -29,6 +29,19 @@ class BookService
         $book->description = $data['description'];
 
         return $book->save();
+    }
 
+    public static function delete($id)
+    {
+        $id = Operations::decrypyId($id);
+        if ($id === null) {
+            return redirect()->route('home_page');
+        }
+
+        throw new Exception('apagando conta');
+
+        $book = Book::find($id);
+        $book->deleted_at = date('Y:m:d H:i:s');
+        $book->save();
     }
 }
