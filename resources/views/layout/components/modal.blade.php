@@ -60,56 +60,56 @@
 
                 </div>
 
-                <div class="alert alert-light">
-                    Aviso: para realizar a atualização de informação, informe sua senha para confirmar sua identidade
-                </div>
-
-                <div class="mb-3">
-                    <label for="senha" class="form-label">Senha</label>
-                    <div class="input-group">
-                        <input
-                            type="password"
-                            class="form-control"
-                            id="password"
-                            name="password"
-                            placeholder="Digite sua senha"
-
-                       
-                            >
-                    </div>
-                         {{-- Password errors --}}
-                @error('password')
-                    <div class="alert alert-warning my-3">
-                        {{$message}}
-                    </div>
-                @enderror
-                </div>
-           
-               
-                <div class="mb-3">
-                    <label for="confirma" class="form-label">Confirme sua senha</label>
-                    <div class="input-group">
-                        <input
-                            type="password"
-                            class="form-control"
-                            id="password_confirm"
-                            name="password_confirmation"
-                            placeholder="Confirme sua senha"
-                            
-                       
-                            >
-                    </div>
+                <div class="row">
+                    <div class="mb-3 col col-md-6 col-12">
+                        <label for="senha" class="form-label">Senha</label>
+                        <div class="input-group">
+                            <input
+                                type="password"
+                                class="form-control"
+                                id="password"
+                                name="password"
+                                placeholder="Digite sua senha"
                     
-                        {{-- Password confirm errors --}}
-                    @error('password_confirm')
+                                >
+                        </div>
+                             {{-- Password errors --}}
+                    @error('password')
                         <div class="alert alert-warning my-3">
                             {{$message}}
                         </div>
                     @enderror
+                    </div>
+                    <div class="mb-3 col col-md-6 col-12">
+                        <label for="confirma" class="form-label">Confirme sua senha</label>
+                        <div class="input-group">
+                            <input
+                                type="password"
+                                class="form-control"
+                                id="password_confirm"
+                                name="password_confirmation"
+                                placeholder="Confirme sua senha"
+                    
+                    
+                                >
+                        </div>
+                    
+                            {{-- Password confirm errors --}}
+                        @error('password_confirm')
+                            <div class="alert alert-warning my-3">
+                                {{$message}}
+                            </div>
+                        @enderror
+                    </div>
                 </div>
+
                 <div class="mb-3 form-check">
                     <input type="checkbox" class="form-check-input" id="show">
                     <label class="form-check-label" for="show">Mostrar senha</label>
+                </div>
+
+                <div class="alert alert-light" style="font-size: 14px;">
+                    Aviso: para realizar a atualização de informação, informe sua senha para confirmar sua identidade
                 </div>
 
                 <div class="d-grid gap-2">
