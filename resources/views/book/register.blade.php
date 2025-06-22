@@ -1,5 +1,7 @@
 @extends('layout.main_layout');
 
+@section('title', 'Cadastre um livro | Laravel Bookshelf')
+
 @section('content')
     <div class="w-50 mx-auto my-5">
         {{-- Exceptions --}}

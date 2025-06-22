@@ -1,5 +1,7 @@
 @extends('layout.main_layout')
 
+@section('title', 'Cadastro | Laravel Bookshelf')
+
 @section('content')
 
     <div class="container d-flex justify-content-center align-items-center min-vh-100">

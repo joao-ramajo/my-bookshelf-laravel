@@ -1,5 +1,6 @@
 @extends('layout.main_layout')   
-   
+@section('title', "{$book['title']} | Laravel Bookshelf")
+
 @section('content')
    <div class="container my-5">
         <a href="{{ url()->previous() }}" class="btn btn-secondary mb-4"><i class="bi bi-arrow-left"></i> Voltar à Lista</a>

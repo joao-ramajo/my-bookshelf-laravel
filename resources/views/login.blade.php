@@ -1,5 +1,7 @@
 @extends('layout.main_layout')
 
+@section('title', 'Login | Laravel Bookshelf')
+
 @section('content')
     <div class="container d-flex justify-content-center align-items-center my-5">
         <div class="card shadow p-4" style="width: 100%; max-width: 400px;">
