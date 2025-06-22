@@ -11,6 +11,13 @@
     <section class="mt-3 bg-white mb-4">
         {{-- Sucess messages --}}
         @include('layout.components.messages')
-        @include('book.card')
+
+        @if($books && $books->count())
+            @include('book.card')
+
+        @else 
+            <p class="alert alert-warning w-50 mx-auto text-center">Nenhum livro encontrado</p>
+        @endif
+        
     </section>
 @endsection
