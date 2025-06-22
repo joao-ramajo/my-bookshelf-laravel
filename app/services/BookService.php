@@ -18,9 +18,13 @@ class BookService
             $data['book_image'] = $path;
         }
 
+        $authors = array_map('trim', explode(';', $data['authors']));
+        $data['authors'] = implode(', ', $authors) . '.';
+
         $book = new Book();
         $book->user_id     = $data['user_id'];
         $book->title       = $data['title'];
+        $book->authors     = $data['authors'];
         $book->nacional    = $data['nacional'];
         $book->pages_qtd   = $data['pages_qtd'];
         $book->book_image  = $data['book_image'] ?? null;

@@ -14,6 +14,7 @@ class BooksTableSeeder extends Seeder
     public function run(): void
     {
         DB::table('books')->insert([
+
             [
                 'user_id'     => 1,
                 'title'       => 'The Hobbit',
@@ -23,6 +24,7 @@ class BooksTableSeeder extends Seeder
                 'publisher'   => 'Allen & Unwin',
                 'nacional'    => 'N',
                 'description' => 'A fantasy novel by J.R.R. Tolkien and a prelude to The Lord of the Rings.',
+                'authors'     => 'J.R.R. Tolkien',
             ],
             [
                 'user_id'     => 1,
@@ -33,6 +35,7 @@ class BooksTableSeeder extends Seeder
                 'publisher'   => 'Secker & Warburg',
                 'nacional'    => 'N',
                 'description' => 'A dystopian novel by George Orwell about totalitarianism and surveillance.',
+                'authors'     => 'George Orwell',
             ],
             [
                 'user_id'     => 1,
@@ -43,6 +46,7 @@ class BooksTableSeeder extends Seeder
                 'publisher'   => 'J.B. Lippincott & Co.',
                 'nacional'    => 'N',
                 'description' => 'A novel by Harper Lee about racial injustice in the Deep South.',
+                'authors'     => 'Harper Lee',
             ],
             [
                 'user_id'     => 1,
@@ -53,6 +57,7 @@ class BooksTableSeeder extends Seeder
                 'publisher'   => 'T. Egerton',
                 'nacional'    => 'N',
                 'description' => 'A classic romance novel by Jane Austen with social critique.',
+                'authors'     => 'Jane Austen',
             ],
             [
                 'user_id'     => 1,
@@ -63,6 +68,7 @@ class BooksTableSeeder extends Seeder
                 'publisher'   => 'Charles Scribner\'s Sons',
                 'nacional'    => 'N',
                 'description' => 'A novel by F. Scott Fitzgerald about the American dream.',
+                'authors'     => 'F. Scott Fitzgerald',
             ],
             [
                 'user_id'     => 1,
@@ -73,6 +79,7 @@ class BooksTableSeeder extends Seeder
                 'publisher'   => 'Harper & Brothers',
                 'nacional'    => 'N',
                 'description' => 'A novel by Herman Melville about the obsessive quest for a white whale.',
+                'authors'     => 'Herman Melville',
             ],
             [
                 'user_id'     => 1,
@@ -83,6 +90,7 @@ class BooksTableSeeder extends Seeder
                 'publisher'   => 'The Russian Messenger',
                 'nacional'    => 'N',
                 'description' => 'A historical novel by Leo Tolstoy set during the Napoleonic Wars.',
+                'authors'     => 'Leo Tolstoy',
             ]
         ]);
     }
