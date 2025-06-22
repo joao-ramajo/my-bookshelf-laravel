@@ -31,6 +31,7 @@ Route::prefix('book')->group(function () {
 Route::prefix('user')->group(function () {
     Route::middleware([CheckIsLogged::class])->group(function () {
         Route::delete('/{id}', [UserController::class, 'destroy'])->name('users.destroy');     // <- Destroy a user by id
+        Route::put('/', [UserController::class, 'update'])->name('users.update');
     });
 });
 

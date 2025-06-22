@@ -1,6 +1,7 @@
 @extends('layout.main_layout')
 
 @section('content')
+
     <section class="py-5 bg-white shadow-sm mb-4">
         <div class="container text-center">
             <h2 class="fw-bold text-danger"><i class="bi bi-book"></i> Laravel Bookshelf</h2>
@@ -20,4 +21,6 @@
         @endif
         
     </section>
+
+    @include('layout.components.modal')
 @endsection

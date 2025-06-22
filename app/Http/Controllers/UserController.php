@@ -2,8 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\UserStoreRequest;
+use App\Http\Requests\UserUpdateRequest;
 use App\Models\User;
+use App\Services\LogService;
 use App\Services\Operations;
+use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
@@ -58,5 +62,30 @@ class UserController extends Controller
         $user->save();
 
         return redirect()->route('logout');
+    }
+
+    public function update(UserUpdateRequest $request)
+    {
+        try {
+            $data = $request->validated();
+            $data['user_id'] = Operations::decrypyId($data['user_id']);
+
+            $user = User::find($data['user_id']);
+
+            $user->email = $data['email'];
+            $user->username = $data['username'];
+            $user->password = $data['password'];
+            $user->save();
+
+            return redirect()
+                ->route('home_page')
+                ->with('success', 'Informações atualizadas com sucesso');
+
+        } catch (Exception $e) {
+            LogService::error($e->getMessage());
+            return redirect()
+                ->route('home_page')
+                ->with('exception_error', 'Erro ao atualizar dados, por favor entre em contato com o suporte');
+        }
     }
 }
