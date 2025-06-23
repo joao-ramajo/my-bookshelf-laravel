@@ -8,6 +8,8 @@ use App\Http\Middleware\CheckIsLogged;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
 
+Route::get('/dashboard', [MainController::class, 'dashboard'])->name('dashboard');
+
 Route::get('/login', [MainController::class, 'login_page'])->name('login_page');                // <- Render login page
 Route::get('/register', [MainController::class, 'register_page'])->name('register_page');       // <- Render user register view
 Route::get('/logout', [AuthController::class, 'logout'])->name('logout');                       // <- Logout user account
