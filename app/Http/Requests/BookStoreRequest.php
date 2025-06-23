@@ -37,16 +37,15 @@ class BookStoreRequest extends FormRequest
     public function messages(): array
     {
         return [
+            'user_id.required' => 'Você não tem acesso a este recurso',
             'title.required' => 'O titúlo é obrigatório',
             'title.unique' => 'Já existe um livro com este titúlo',
+            'title.max' => 'O titulo não pode passar de :max caracteres',
             'pages_qtd.required' => 'Este campo é obrigatório',
             'gender.required' => 'Este campo é obrigatório',
             'publisher.required' => 'Este campo é obrigatório',
             'description.required' => 'Este campo é obrigatório',
-            // 'book_image.required' => 'Você precisa enviar uma imagem.',
-            // 'book_image.image'    => 'O arquivo deve ser uma imagem.',
-            // 'book_image.mimes'    => 'Formatos permitidos: jpeg, jpg e png.',
-            // 'book_image.max'      => 'A imagem não pode passar de 2MB.',
+            'authors' => 'Este campo é obrigatório'
         ];
     }
 }
