@@ -14,7 +14,7 @@ class MainController extends Controller
     public function index()
     {
         try {
-            $books = Book::orderBy('created_at', 'desc')->paginate(3);
+            $books = Book::orderBy('created_at', 'desc')->paginate(5);
 
             return view('home', ['books' => $books]);
         } catch (Exception $e) {

@@ -19,7 +19,6 @@ return new class extends Migration
             $table->tinyInteger('note');
             $table->timestamps();
             $table->softDeletes();
-            $table->unique(['user_id', 'book_id']);
         });
     }
 

@@ -1,5 +1,5 @@
 
-        <div class="container d-flex flex-row flex-wrap gap-5 justify-content-center">
+        <div class="container d-flex flex-row flex-wrap gap-5 justify-content-center flex-wrap align-items-left">
             @foreach($books as $book)
                     <div class="card h-100 shadow-sm livro_card" style="width: 300px;">
                         <img src="{{ asset('storage/' . $book['book_image']) }}" class="card-img-top" alt="Capa do livro {{ $book['title'] }}" style="height: 250px; object-fit: cover;">

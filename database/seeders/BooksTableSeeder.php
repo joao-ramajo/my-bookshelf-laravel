@@ -97,6 +97,7 @@ class BooksTableSeeder extends Seeder
                 'authors'     => 'Leo Tolstoy',
             ]
         ]);
-        Book::factory()->count(50)->create();
+        $qtd = env('BOOKS_COUNT', 5);
+        Book::factory()->count($qtd)->create();
     }
 }

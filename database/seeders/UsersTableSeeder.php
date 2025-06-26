@@ -22,6 +22,8 @@ class UsersTableSeeder extends Seeder
             'created_at' => now(),
             'updated_at' => now()
         ]);
-        User::factory()->count(5)->create();
+
+        $qtd = env('USERS_COUNT', 5);
+        User::factory()->count($qtd)->create();
     }
 }

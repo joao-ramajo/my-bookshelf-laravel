@@ -2,6 +2,8 @@
 
 namespace Database\Seeders;
 
+use App\Models\Review;
+use Database\Factories\ReviewFactory;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
@@ -13,15 +15,7 @@ class ReviewSeeder extends Seeder
      */
     public function run(): void
     {
-        DB::table('reviews')->insert(
-            [
-                [
-                    'user_id' => 1,
-                    'book_id' => 1,
-                    'comment' => 'Lorem ipslum dolor amet',
-                    'note' => 5
-                ]
-            ]
-        );
+        $qtd = env('REVIEWS_COUNT', 5);
+        Review::factory()->count($qtd)->create();
     }
 }
