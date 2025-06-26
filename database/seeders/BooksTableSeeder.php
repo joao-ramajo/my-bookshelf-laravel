@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Book;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
@@ -13,6 +14,9 @@ class BooksTableSeeder extends Seeder
      */
     public function run(): void
     {
+
+
+
         DB::table('books')->insert([
 
             [
@@ -93,5 +97,6 @@ class BooksTableSeeder extends Seeder
                 'authors'     => 'Leo Tolstoy',
             ]
         ]);
+        Book::factory()->count(50)->create();
     }
 }

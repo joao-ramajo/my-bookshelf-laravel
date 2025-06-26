@@ -8,12 +8,14 @@ use App\Models\User;
 use App\Services\LogService;
 use App\Services\Operations;
 use Exception;
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
 
 class UserController extends Controller
 {
+
     public function register(Request $request)
     {
 

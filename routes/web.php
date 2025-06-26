@@ -3,6 +3,7 @@
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BookController;
 use App\Http\Controllers\MainController;
+use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\UserController;
 use App\Http\Middleware\CheckIsLogged;
 use Illuminate\Support\Facades\DB;
@@ -37,6 +38,11 @@ Route::prefix('user')->group(function () {
     });
 });
 
+Route::prefix('review')->group(function() {
+    Route::middleware([CheckIsLogged::class])->group(function () {
+        Route::get('/', [ReviewController::class, 'index']);
+    });
+});
 
 Route::get('/db-test', function () {
     try {
@@ -46,3 +52,4 @@ Route::get('/db-test', function () {
         return "Erro na conexão: " . $e->getMessage();
     }
 });
+
