@@ -80,7 +80,35 @@
                             <button type="submit" class="btn btn-primary"><i class="bi bi-hand-thumbs-up"></i> Enviar Avaliação</button>
                         </form> --}}
 
-
+                        <h3 class="my-4">Comentarios</h3>
+{{--  --}}
+<div class="accordion" id="accordionExample">
+ @foreach($data_review as $review)
+   <div class="accordion-item">
+    <h2 class="accordion-header">
+      <button class="accordion-button collapsed mx-0" type="button" data-bs-toggle="collapse" data-bs-target="#collapseId{{ $review['id'] }}" aria-expanded="false" aria-controls="collapseId{{ $review['id'] }}">
+        <span style="width: 60%;">{{ $review['username']}} </span>
+        <span class="">
+            @for($i = 0; $i < 5; $i++)
+                @if($i < $review['note'])
+                    <i class="bi bi-star-fill text-warning"></i>
+                @else 
+                    <i class="bi bi-star text-warning"></i>
+                @endif
+            @endfor
+        </span>
+      </button>
+    </h2>
+    <div id="collapseId{{ $review['id'] }}" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+      <div class="accordion-body">
+        {{ $review['comment']}}
+      </div>
+    </div>
+  </div>
+  @endforeach
+  
+</div>
+{{--  --}}
                     </div>
                 </div>
             </div>

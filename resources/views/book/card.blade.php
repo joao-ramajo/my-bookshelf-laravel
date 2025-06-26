@@ -17,3 +17,8 @@
         </div>
 
         <div class="d-flex w-100 justify-content-center align-items-center my-3">{{ $books->links() }}</div>
+        <div class="w-100 alert alert-danger d-flex justify-content-center align-items-center ">
+            <p class="text-center bg-ddanger m-0">
+                Livros cadastrados: <span class="badge text-bg-secondary">{{ $qtd }}</span>
+            </p>
+        </div>

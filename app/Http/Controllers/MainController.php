@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\Book;
+use App\Models\Review;
 use App\Models\User;
 use App\Services\LogService;
 use App\Services\Operations;
+use App\Services\ReviewService;
 use Exception;
 use Illuminate\Http\Request;
 
@@ -15,8 +17,8 @@ class MainController extends Controller
     {
         try {
             $books = Book::orderBy('created_at', 'desc')->paginate(5);
-
-            return view('home', ['books' => $books]);
+            $qtd = Book::all()->count();
+            return view('home', ['books' => $books, 'qtd' => $qtd]);
         } catch (Exception $e) {
             LogService::error($e->getMessage());
             return view('home', ['books' => false]);
@@ -48,12 +50,18 @@ class MainController extends Controller
             }
 
             $book = Book::find($id);
-
+            $comments = Review::all()->where('book_id', $book->id);
             if (!$book) {
                 return redirect()->route('home_page')->with('exception_error', 'Erro ao buscar informações do livro');
             }
 
-            return view('book/view', ['book' => $book]);
+            $data_review = [];
+
+            foreach ($comments as $review) {
+                $data_review[] = ReviewService::getComment($review);
+            }
+
+            return view('book/view', ['book' => $book, 'data_review' => $data_review]);
         } catch (Exception $e) {
             LogService::error($e->getMessage());
             return redirect()->back()->with('exception_error', 'Erro ao buscar informações sobre o livro');
