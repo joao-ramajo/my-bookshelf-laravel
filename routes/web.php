@@ -37,6 +37,7 @@ Route::prefix('user')->group(function () {
     });
 });
 
+
 Route::get('/db-test', function () {
     try {
         DB::connection()->getPdo();

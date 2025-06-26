@@ -22,6 +22,7 @@
                                 <button type="submit" class="dropdown-item text-secondary"><i class="bi bi-trash3"></i> Deletar conta </button>
                             </form>
                             @include('layout.components.modal_btn')
+                            
                          </ul>
                      </div>
 
