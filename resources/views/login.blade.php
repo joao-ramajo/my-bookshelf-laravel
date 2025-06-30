@@ -27,9 +27,7 @@
                 </div>
 
                 @error('email')
-                    <div class="alert alert-warning my-3">
-                        {{$message}}
-                    </div>
+                     <x-alert-danger>{{ $message }}</x-alert-danger>
                 @enderror
 
                 <div class="mb-3">
@@ -51,9 +49,7 @@
                     </div>
                     {{-- Mostrar erros --}}
                     @error('password')
-                        <div class="alert alert-warning my-3">
-                            {{$message}}
-                        </div>
+                        <x-alert-danger>{{ $message }}</x-alert-danger>
                     @enderror
                     <div class="mb-3 form-check">
                         <input type="checkbox" class="form-check-input" id="show">

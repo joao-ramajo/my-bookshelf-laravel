@@ -30,9 +30,7 @@
                         >
                                 {{-- Email errors --}}
                 @error('email')
-                    <div class="alert alert-warning my-3">
-                        {{$message}}
-                    </div>
+                     <x-alert-danger>{{ $message }}</x-alert-danger>
                 @enderror
 
 
@@ -58,9 +56,7 @@
                         
                 {{-- Username errors --}}
                 @error('username')
-                    <div class="alert alert-warning my-3">
-                        {{$message}}
-                    </div>
+                 <x-alert-danger>{{ $message }}</x-alert-danger>
                 @enderror
 
                 </div>
@@ -85,9 +81,7 @@
                     </div>
                          {{-- Password errors --}}
                 @error('password')
-                    <div class="alert alert-warning my-3">
-                        {{$message}}
-                    </div>
+                 <x-alert-danger>{{ $message }}</x-alert-danger>
                 @enderror
                 </div>
            
@@ -112,9 +106,7 @@
                     
                         {{-- Password confirm errors --}}
                     @error('password_confirm')
-                        <div class="alert alert-warning my-3">
-                            {{$message}}
-                        </div>
+                     <x-alert-danger>{{ $message }}</x-alert-danger>
                     @enderror
                 </div>
                 <div class="mb-3 form-check">
