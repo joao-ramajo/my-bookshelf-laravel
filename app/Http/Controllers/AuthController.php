@@ -39,8 +39,7 @@ class AuthController extends Controller
         $email = $request->input('email');
         $password = $request->input('password');
 
-        // Verify if user exists
-
+        // Verify if user exists    
         $user = User::where('email', $email)
             ->where('deleted_at', NULL)
             ->first();

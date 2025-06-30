@@ -63,11 +63,8 @@
 
                 {{-- Invalid login  --}}
                 @if(session('loginError'))
-                    <div class="alert alert-warning my-3 text-center">
-                        {{ session('loginError') }}
-                    </div>
-                @endif
-
+                    <x-alert-danger> {{ session('loginError')}} </x-alert-danger>
+                @endif  
                 <div class="d-grid gap-2">
                     <input type="submit" class="btn btn-danger" value="Entrar">
                     <a href="{{ route('register_page') }}" class="btn btn-outline-secondary">Faça seu cadastro</a>

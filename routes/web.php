@@ -15,6 +15,8 @@ Route::get('/login', [MainController::class, 'login_page'])->name('login_page');
 Route::get('/register', [MainController::class, 'register_page'])->name('register_page');       // <- Render user register view
 Route::get('/logout', [AuthController::class, 'logout'])->name('logout');                       // <- Logout user account
 
+Route::view('/alerts', 'info.alerts');
+
 Route::post('/login', [AuthController::class, 'login'])->name('login_submit');                  // <- Submit a login request 
 Route::post('/register', [UserController::class, 'register'])->name('register_submit');         // <- Submit a register request
 
