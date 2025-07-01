@@ -9,13 +9,14 @@ use Illuminate\Http\Request;
 class AuthController extends Controller
 {
 
-    public function logout():RedirectResponse {
+    public function logout(): RedirectResponse
+    {
         session()->forget('user');
         return redirect()
             ->route('login_page');
     }
 
-    public function login(Request $request):RedirectResponse
+    public function login(Request $request): RedirectResponse
     {
         $request->validate(
             // Regras para os campos de email e senha
@@ -44,21 +45,21 @@ class AuthController extends Controller
             ->where('deleted_at', NULL)
             ->first();
 
-        if(!$user){
+        if (!$user) {
             return redirect()
                 ->back()
                 ->withInput()
                 ->with('loginError', 'Usuário não encontrado');
         }
 
-        if(!password_verify($password, $user->password)){
+        if (!password_verify($password, $user->password)) {
             return redirect()
                 ->back()
                 ->withInput()
                 ->with('loginError', 'Senha ou email incorretos');
         }
 
-        $user->last_login =date('Y-m-d H:i:s');
+        $user->last_login = date('Y-m-d H:i:s');
         $user->save();
 
         session([
@@ -67,11 +68,10 @@ class AuthController extends Controller
                 'username' => $user->username,
                 'email' => $user->email
             ]
-            ]);
+        ]);
 
-        
-        return redirect()  
+
+        return redirect()
             ->route('home_page');
-
     }
 }

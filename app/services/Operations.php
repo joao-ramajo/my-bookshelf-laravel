@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Crypt;
 
 class Operations
 {
-    public static function decrypyId($id)
+    public static function decrypyId($id): int|null
     {
         try {
             $id = Crypt::decrypt($id);
@@ -15,11 +15,5 @@ class Operations
             return null;
         }
         return $id;
-    }
-
-    public static function print($obj){
-        echo "<pre>";
-        print_r($obj);
-        echo "</pre>";
     }
 }

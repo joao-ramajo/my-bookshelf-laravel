@@ -9,11 +9,13 @@ use App\Services\LogService;
 use App\Services\Operations;
 use App\Services\ReviewService;
 use Exception;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\View\View;
 
 class MainController extends Controller
 {
-    public function index()
+    public function index(): View
     {
         try {
             $books = Book::orderBy('created_at', 'desc')->paginate(5);
@@ -25,22 +27,22 @@ class MainController extends Controller
         }
     }
 
-    public function login_page()
+    public function login_page(): View 
     {
         return view('login');
     }
 
-    public function register_page()
+    public function register_page(): View 
     {
         return view('register');
     }
 
-    public function new_book_page()
+    public function new_book_page(): View 
     {
         return view('book.register');
     }
 
-    public function book($id)
+    public function book($id): View|RedirectResponse 
     {
         try {
             $id = Operations::decrypyId($id);

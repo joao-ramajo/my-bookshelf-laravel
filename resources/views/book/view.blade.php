@@ -115,7 +115,10 @@
                                     
                                 </div>
                             @endforeach
-                            <div class="mt-3 d-flex justify-content-center">{{ $comments->links()}}</div>
+
+                            @if(count($data_review) > 0)
+                                <div class="mt-3 d-flex justify-content-center">{{ $comments->links()}}</div>
+                            @endif
                         </div>
                         {{--  --}}
                     </div>

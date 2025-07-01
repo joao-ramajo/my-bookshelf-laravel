@@ -8,7 +8,7 @@ use App\Models\User;
 use App\Services\LogService;
 use App\Services\Operations;
 use Exception;
-
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\Hash;
 class UserController extends Controller
 {
 
-    public function register(Request $request)
+    public function register(Request $request): RedirectResponse
     {
 
         $request->validate(
@@ -50,7 +50,7 @@ class UserController extends Controller
         return redirect()->route('home_page');
     }
 
-    public function destroy($id)
+    public function destroy($id): RedirectResponse
     {
         $id = Operations::decrypyId($id);
         if ($id === null) {
@@ -66,7 +66,7 @@ class UserController extends Controller
         return redirect()->route('logout');
     }
 
-    public function update(UserUpdateRequest $request)
+    public function update(UserUpdateRequest $request): RedirectResponse
     {
         try {
             $data = $request->validated();

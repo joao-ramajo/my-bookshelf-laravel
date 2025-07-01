@@ -9,12 +9,13 @@ use App\Services\BookService;
 use App\Services\LogService;
 use App\Services\Operations;
 use Exception;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Crypt;
 
 class BookController extends Controller
 {
-    public function new(BookStoreRequest $request)
+    public function new(BookStoreRequest $request):RedirectResponse
     {
         try {
             BookService::create($request);
@@ -33,7 +34,7 @@ class BookController extends Controller
         }
     }
 
-    public function destroy($id)
+    public function destroy($id): RedirectResponse
     {
         try {
             BookService::delete($id);
@@ -47,7 +48,7 @@ class BookController extends Controller
         }
     }
 
-    public function update(BookUpdateRequest $request, $id)
+    public function update(BookUpdateRequest $request, $id): RedirectResponse
     {
 
         $request->validated();
@@ -56,7 +57,7 @@ class BookController extends Controller
         BookService::update($request, $book_id);
 
         return redirect()
-            ->route('books.view' , ['id' => Crypt::encrypt($book_id)])
+            ->route('books.view', ['id' => Crypt::encrypt($book_id)])
             ->with('success_message', 'Livro atualizado com sucesso');
     }
 }

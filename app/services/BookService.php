@@ -4,7 +4,7 @@ namespace App\Services;
 
 use App\Http\Requests\BookStoreRequest;
 use App\Models\Book;
-use Exception;
+use Illuminate\Http\RedirectResponse;
 
 class BookService
 {
@@ -35,7 +35,7 @@ class BookService
         return $book->save();
     }
 
-    public static function delete($id)
+    public static function delete($id): bool|RedirectResponse
     {
         $id = Operations::decrypyId($id);
         if ($id === null) {
@@ -44,10 +44,10 @@ class BookService
 
         $book = Book::find($id);
         $book->deleted_at = date('Y:m:d H:i:s');
-        $book->save();
+        return $book->save();
     }
 
-    public static function update($request, $id)
+    public static function update($request, $id):bool
     {
         $book_id = $id;
 
@@ -66,6 +66,6 @@ class BookService
             $book->book_image = $path;
         }
 
-        $book->save();
+        return $book->save();
     }
 }

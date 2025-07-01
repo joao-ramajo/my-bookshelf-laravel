@@ -7,8 +7,9 @@ use App\Models\User;
 
 class ReviewService
 {
-    public static function getComment(Review $review){
-        $username = User::where('id' , $review->user_id)->value('username');
+    public static function getComment(Review $review): array
+    {
+        $username = User::where('id', $review->user_id)->value('username');
         $comment = $review->comment;
         $note = $review->note;
 
