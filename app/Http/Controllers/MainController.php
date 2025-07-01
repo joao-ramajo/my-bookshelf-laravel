@@ -49,8 +49,8 @@ class MainController extends Controller
                 return redirect()->route('home_page')->with('exception_error', 'ID inválido');
             }
 
-            $book = Book::find($id);
-            $comments = Review::all()->where('book_id', $book->id);
+            $book = Book::whereNull('deleted_at')->find($id);
+            $comments = Review::all()->where('book_id', $book->id)->whereNull('deleted_at');
             if (!$book) {
                 return redirect()->route('home_page')->with('exception_error', 'Erro ao buscar informações do livro');
             }
@@ -60,6 +60,7 @@ class MainController extends Controller
             foreach ($comments as $review) {
                 $data_review[] = ReviewService::getComment($review);
             }
+
 
             return view('book/view', ['book' => $book, 'data_review' => $data_review]);
         } catch (Exception $e) {

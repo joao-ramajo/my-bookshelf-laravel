@@ -1,80 +1,112 @@
-@extends('layout.main_layout')
+@extends('layout.main_layout');
 
-@section('title', 'Editar | Laravel Bookshelf')
-{{-- Ainda não omodificado --}}
+@section('title', 'Cadastre um livro | Laravel Bookshelf')
+
 @section('content')
-<div class="container my-5">
-        <a href="<?= $baseUrl ?>livros" class="btn btn-secondary mb-4"><i class="bi bi-arrow-left"></i> Voltar à Lista</a>
-        <?= Alert::span() ?>
-        <div class="card shadow-lg">
-            <div class="row g-0">
-                <div class="col-md-4 text-center p-4">
-                    <img src="<?= $capa ?>"
-                        alt="Capa do livro"
-                        class="img-fluid rounded shadow"
-                        style="max-height: 400px;" />
+    <div class="w-50 mx-auto my-5">
+        {{-- Exceptions --}}
+        @if (session('exception_error'))
+            <div class="alert alert-warning">
+                {{ session('exception_error') }}
+            </div>
+        @endif
+        <form action="{{ route('books.new') }}" method="POST" enctype="multipart/form-data"
+            class="p-4 bg-white rounded shadow-sm">
+            @csrf
 
-                    <div class="mt-5">
-                        <?php if ($comentarios != null): ?>
-                            <h2 class="mt-5 text-secondary">Avaliações</h2>
-                            <?php foreach ($comentarios as $comentario) {
-                                Layout::avaliacao($comentario->nome, $comentario->nota, $comentario->comentario, $comentario->id, $comentario->id_usuario);
-                            } ?>
-                        <?php endif; ?>
-                    </div>
+            <input type="hidden" name="user_id" value="{{ session('user.id') }}">
+
+            <h4 class="mb-4 text-danger"><i class="bi bi-book"></i> Cadastrar Novo Livro</h4>
+
+            <div class="mb-3">
+                <label for="title" class="form-label">Título</label>
+                <input type="text" class="form-control" id="title" name="title"
+                    value="Percy Jackson e o Ladrão de Raios" placeholder="Digite o título do livro">
+
+                {{-- Error message --}}
+                @error('title')
+                    <x-alert-danger>{{ $message }}</x-alert-danger>
+                @enderror
+            </div>
+
+            <div class="mb-3">
+                <label for="autores" class="form-label">Autor(es)</label>
+                <input type="text" class="form-control" id="authors" name="authors" value="Elisabeth Swan"
+                    placeholder="Digite o nome do(s) autor(es)">
+                {{-- Error message --}}
+                @error('authors')
+                    <x-alert-danger>{{ $message }}</x-alert-danger>
+                @enderror
+            </div>
+            <p class="text-secondary">Caso o livro tenha mais de um autor, separe por ';'</p>
+
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    <label for="pages_qtd" class="form-label">Número de páginas</label>
+                    <input type="number" class="form-control" id="pages_qtd" name="pages_qtd" value="200"
+                        placeholder="Quantidade de páginas">
+                    {{-- Error message --}}
+                    @error('pages_qtd')
+                        <x-alert-danger>{{ $message }}</x-alert-danger>
+                    @enderror
                 </div>
-                <div class="col-md-8">
-                    <div class="card-body">
-                        <h2 class="card-title text-primary">
-                            <?= htmlspecialchars($livro->titulo) ?>
-                        </h2>
-                        <p class="text-muted mb-1"><i class="bi bi-person-lines-fill"></i> <strong>Autor(es):</strong> <?= htmlspecialchars($livro->autores) ?></p>
-                        <p class="text-muted mb-1"><i class="bi bi-journal"></i> <strong>Editora:</strong> <?= htmlspecialchars($livro->editora) ?></p>
-                        <p class="text-muted mb-1"><i class="bi bi-file-earmark-text"></i> <strong>Nº de Páginas:</strong> <?= (int)$livro->numero_paginas ?></p>
-                        <p class="text-muted mb-1"><i class="bi bi-bookmark"></i> <strong>Gênero:</strong> <?= htmlspecialchars($livro->genero) ?></p>
-                        <p class="text-muted mb-1"><i class="bi bi-flag"></i> <strong>Nacional:</strong> <?= $livro->nacional === 'S' ? 'Sim' : 'Não' ?></p>
-
-                        <hr>
-
-                        <h5 class="text-dark"><i class="bi bi-card-text"></i> Descrição</h5>
-                        <p class="card-text"><?= nl2br(htmlspecialchars($livro->descricao)) ?></p>
-                        <div class="mt-4">
-                            <a href="<?= $baseUrl ?>livros/editar/<?= $livro->id ?>" class="btn btn-outline-primary me-2"><i class="bi bi-pencil-square"></i> Editar</a>
-                            <a href="<?= $baseUrl ?>livros/delete/<?= $livro->id ?>/<?= $_ENV['EDIT_TOKEN'] ?>" class="btn btn-outline-danger"
-                                onclick="return confirm('Tem certeza que deseja excluir este livro?')"><i class="bi bi-trash"></i> Excluir</a>
-                        </div>
-                        <!-- Área de avaliação -->
-                        <hr>
-                        <h4 class="mt-4">Deixe sua avaliação</h4>
-                        <form method="POST" action="<?= $baseUrl ?>avaliar" class="mt-3">
-                            <input type="hidden" name="edit_token" value="<?= $_ENV['EDIT_TOKEN'] ?>">
-                            <input type="hidden" name="id_usuario" value="<?= $_SESSION['user']->id ?>">
-                            <input type="hidden" name="id_livro" value="<?= (int)$livro->id ?>" />
-
-                            <div class="mb-3">
-                                <label for="comentario" class="form-label">Comentário</label>
-                                <textarea class="form-control" id="comentario" name="comentario" rows="3" required></textarea>
-                            </div>
-
-                            <div class="mb-3">
-                                <label for="nota" class="form-label">Nota</label>
-                                <select class="form-select" id="nota" name="nota" required>
-                                    <option value="" selected disabled>Selecione uma nota</option>
-                                    <option value="1">1 - Péssimo</option>
-                                    <option value="2">2 - Ruim</option>
-                                    <option value="3">3 - Regular</option>
-                                    <option value="4">4 - Bom</option>
-                                    <option value="5">5 - Excelente</option>
-                                </select>
-                            </div>
-
-                            <button type="submit" class="btn btn-primary"><i class="bi bi-hand-thumbs-up"></i> Enviar Avaliação</button>
-                        </form>
-
-
-                    </div>
+                <div class="col-md-6 mb-3">
+                    <label for="gender" class="form-label">Gênero</label>
+                    <input type="text" class="form-control" id="gender" name="gender" value="Terror"
+                        placeholder="Ex: Fantasia, Romance...">
+                    {{-- Error message --}}
+                    @error('gender')
+                        <x-alert-danger>{{ $message }}</x-alert-danger>
+                    @enderror
                 </div>
             </div>
-        </div>
+
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    <label for="nacional" class="form-label">O livro é nacional?</label>
+                    <select class="form-select" id="nacional" name="nacional">
+                        <option value="D" disabled selected>Selecione uma opção</option>
+                        <option value="S">Sim</option>
+                        <option value="N">Não</option>
+                    </select>
+                    {{-- Error message --}}
+                    @error('nacional')
+                        <x-alert-danger>{{ $message }}</x-alert-danger>
+                    @enderror
+                </div>
+
+                <div class="col-md-6 mb-3">
+                    <label for="publisher" class="form-label">Editora</label>
+                    <input type="text" class="form-control" id="publisher" name="publisher" value="Burguers Book"
+                        placeholder="Nome da editora">
+                    {{-- Error message --}}
+                    @error('publisher')
+                        <x-alert-danger>{{ $message }}</x-alert-danger>
+                    @enderror
+                </div>
+            </div>
+
+            <div class="mb-3">
+                <label for="book_image" class="form-label">Capa do livro</label>
+                <input type="file" class="form-control" name="book_image" id="book_image">{{-- Error message --}}
+                @error('book_image')
+                    <x-alert-danger>{{ $message }}</x-alert-danger>
+                @enderror
+
+            </div>
+
+            <div class="mb-4">
+                <label for="description" class="form-label">Descrição</label>
+                <textarea class="form-control" id="description" rows="4" name="description"
+                    placeholder="Fale um pouco sobre o livro">Descrição genérica do livro</textarea>
+                @error('description')
+                    <x-alert-danger>{{ $message }}</x-alert-danger>
+                @enderror
+            </div>
+
+            <button type="submit" class="btn btn-outline-danger"><i class="bi bi-book"></i> Cadastrar Livro</button>
+        </form>
     </div>
+
+
 @endsection

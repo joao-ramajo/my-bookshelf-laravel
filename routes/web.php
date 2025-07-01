@@ -29,6 +29,7 @@ Route::prefix('book')->group(function () {
         Route::get('/', [MainController::class, 'new_book_page'])->name('books.page');          // <- render a Form to make a new book request
         Route::get('/{id}', [MainController::class, 'book'])->name('books.view');               // <- Get info about one book
         Route::post('/new', [BookController::class, 'new'])->name('books.new');                 // <- Make a post request to create a new Book
+        Route::put('/{id}', [BookController::class, 'update'])->name('books.update');
         Route::delete('/{id}', [BookController::class, 'destroy'])->name('books.destroy');      // <- Destroy a book by id  
     });
 });

@@ -16,4 +16,10 @@ class Operations
         }
         return $id;
     }
+
+    public static function print($obj){
+        echo "<pre>";
+        print_r($obj);
+        echo "</pre>";
+    }
 }

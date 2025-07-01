@@ -42,10 +42,30 @@ class BookService
             return redirect()->route('home_page');
         }
 
-        throw new Exception('apagando conta');
-
         $book = Book::find($id);
         $book->deleted_at = date('Y:m:d H:i:s');
+        $book->save();
+    }
+
+    public static function update($request, $id)
+    {
+        $book_id = $id;
+
+        $book = Book::find($book_id);
+
+        $book->title = $request->title;
+        $book->authors = $request->authors;
+        $book->pages_qtd = $request->pages_qtd;
+        $book->nacional = $request->nacional;
+        $book->publisher = $request->publisher;
+        $book->description = $request->description;
+        $book->updated_at = now();
+        if ($request->hasFile('book_image')) {
+            $file = $request->file('book_image');
+            $path = $file->store('books', 'public');
+            $book->book_image = $path;
+        }
+
         $book->save();
     }
 }
