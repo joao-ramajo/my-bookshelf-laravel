@@ -112,9 +112,10 @@
                                             {{ $review['comment'] }}
                                         </div>
                                     </div>
+                                    
                                 </div>
                             @endforeach
-
+                            <div class="mt-3 d-flex justify-content-center">{{ $comments->links()}}</div>
                         </div>
                         {{--  --}}
                     </div>

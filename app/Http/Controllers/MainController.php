@@ -50,7 +50,8 @@ class MainController extends Controller
             }
 
             $book = Book::whereNull('deleted_at')->find($id);
-            $comments = Review::all()->where('book_id', $book->id)->whereNull('deleted_at');
+            // $comments = Review::all()->where('book_id', $book->id)->whereNull('deleted_at');
+            $comments = Review::orderBy('created_at', 'desc')->whereNull('deleted_at')->where('book_id', $book->id)->paginate(3);
             if (!$book) {
                 return redirect()->route('home_page')->with('exception_error', 'Erro ao buscar informações do livro');
             }
@@ -62,7 +63,7 @@ class MainController extends Controller
             }
 
 
-            return view('book/view', ['book' => $book, 'data_review' => $data_review]);
+            return view('book/view', ['book' => $book, 'data_review' => $data_review, 'comments' => $comments]);
         } catch (Exception $e) {
             LogService::error($e->getMessage());
             return redirect()->back()->with('exception_error', 'Erro ao buscar informações sobre o livro');
