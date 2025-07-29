@@ -7,3 +7,14 @@ Sistema de gerenciamento de livros com CRUD completo baseado no projeto original
 ## 💻 Tecnologias Utilizadas
 - Laravel 11+ 
 - MySQL 
+- Bootstrap 5
+  
+## ✨ Funcionalidades
+
+- Cadastro e autenticação de usuários  
+- Cadastro, edição e exclusão de livros  
+- Listagem de livros com paginação  
+- Validação de entrada de dados  
+- Separação clara entre camadas de aplicação (entidades, gateway, controller, view)
+
+---
