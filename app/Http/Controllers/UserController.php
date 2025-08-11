@@ -5,49 +5,34 @@ namespace App\Http\Controllers;
 use App\Http\Requests\UserStoreRequest;
 use App\Http\Requests\UserUpdateRequest;
 use App\Models\User;
+use App\ObjectsValues\Password;
 use App\Services\LogService;
 use App\Services\Operations;
 use Exception;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
-
+use InvalidArgumentException;
 
 class UserController extends Controller
 {
 
-    public function register(Request $request): RedirectResponse
+    public function register(UserStoreRequest $request): RedirectResponse
     {
+        try{
+            $user = new User();
+            $user->username = $request->input('username');
+            $user->email = $request->input('email');
+            $user->password = new Password($request->input('password'));
+            $user->save();
 
-        $request->validate(
-            [
-                'email' => 'required|email',
-                'username' => 'required',
-                'password' => 'required|min:6|max:12|confirmed',
-                'password_confirmation' => 'required|min:6|max:12'
-            ],
-
-            [
-                'email.required' => 'Email é obrigatório',
-                'email.email' => 'Formato incorreto, por favor insira um email válido',
-                'username.required' => 'Nome de usuário é obrigatório',
-                'password.required' => 'A senha é obrigatória',
-                'password.min' => "A senha deve conter ao menos :min caracteres",
-                'password.max' => "A senha deve conter ao máximo :max caracteres",
-                'password.confirmed' => "As senhas devem ser iguais",
-                'password_confirmation.required' => 'Confirma senha é obrigatória',
-                'password_confirmation.min' => "A senha deve conter ao menos :min caracteres",
-                'password_confirmation.max' => "A senha deve conter ao máximo :max caracteres"
-            ]
-        );
-
-        $user = new User();
-        $user->username = $request->input('username');
-        $user->email = $request->input('email');
-        $user->password = Hash::make($request->input('password'));
-        $user->save();
-
-        return redirect()->route('home_page');
+            return redirect()->route('home_page');
+        }catch(InvalidArgumentException $e){
+            return redirect()
+                ->back()
+                ->withInput()
+                ->with('error', $e->getMessage());
+        }
     }
 
     public function destroy($id): RedirectResponse
